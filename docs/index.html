@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日程調整 - Schedule Coordinator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📅 日程調整ツール</h1>
+            <p>ドラッグで時間帯を選択して、最適な時間を見つけましょう</p>
+        </header>
+
+        <main>
+            <!-- Event Selection / Creation -->
+            <section class="event-section">
+                <div class="event-header">
+                    <h2>イベント選択</h2>
+                </div>
+                <div class="event-controls">
+                    <select id="eventSelect" class="event-select">
+                        <option value="">-- 新規作成 または 既存から選択 --</option>
+                    </select>
+                    <div class="new-event-form" style="display:none;" id="newEventForm">
+                        <input type="text" id="eventTitle" placeholder="イベント名" required>
+                        <input type="text" id="eventDescription" placeholder="説明（オプション）">
+                        <button onclick="createEvent()">作成</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- User Info -->
+            <section class="user-section">
+                <h3>あなたの名前</h3>
+                <input type="text" id="userName" placeholder="名前を入力" class="user-input">
+            </section>
+
+            <!-- Schedule Grid -->
+            <section class="schedule-section" id="scheduleSection" style="display:none;">
+                <h2 id="selectedEventTitle"></h2>
+                
+                <div class="controls">
+                    <button onclick="addNewDate()" class="btn-primary">+ 日付を追加</button>
+                </div>
+
+                <div class="schedule-grid" id="scheduleGrid">
+                    <!-- Schedule dates and time slots will be inserted here -->
+                </div>
+
+                <div class="stats-section" id="statsSection">
+                    <h3>ベストな時間帯</h3>
+                    <div id="bestSlot" class="best-slot">
+                        <p>投票結果が表示されます</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Date Picker Modal -->
+    <div id="dateModal" class="modal" style="display:none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeDateModal()">&times;</span>
+            <h3>日付を選択</h3>
+            <input type="date" id="dateInput" class="date-input">
+            <button onclick="confirmDate()" class="btn-primary">確定</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
